@@ -18,6 +18,9 @@ class Game < Gosu::Window
     @score = 0
     @playing = true #gameworking
     @start_time = 0
+    @gameover = Gosu::Song.new('media/gameover.mp3')
+    @soundtrack = Gosu::Song.new('media/crazyfrog.wav')
+    @soundtrack.play(true)
   end
 
 
@@ -55,6 +58,8 @@ class Game < Gosu::Window
       @visible = 30 if @visible < -10 && rand < 0.01
       @time_left = (60 - ((Gosu.milliseconds) - @start_time) / 1000) #timevisible
       @playing = false if @time_left < 1
+    else
+      @gameover.play
     end
 
   end
