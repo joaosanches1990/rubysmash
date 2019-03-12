@@ -39,9 +39,8 @@ class Game < Gosu::Window
     @font.draw_text(@time_left.to_s, 50, 50, 2)
     unless @playing
       @font.draw_text("Game Over !!!", 300, 300, 3)
-      @font.draw_text("YOU SUCK!!", 300, 350, 3)
       @visible = 20
-      @font.draw_text("Press Space Bar to Play", 170, 150, 3)
+      @font.draw_text("Press Space Bar to Play", 200, 150, 3)
     end
 
   end
@@ -54,7 +53,7 @@ class Game < Gosu::Window
       @vel_y *= -1 if @y + @width / 2 > 600 || @y - @width / 2 < 0
       @visible -= 1
       @visible = 30 if @visible < -10 && rand < 0.01
-      @time_left = (60 - (Gosu.milliseconds / 1000)) #timevisible
+      @time_left = (60 - ((Gosu.milliseconds) - @start_time) / 1000) #timevisible
       @playing = false if @time_left < 1
     end
 
@@ -71,7 +70,21 @@ class Game < Gosu::Window
           @score -= 5
         end
       end
+    else #RESTART
+        if (id == Gosu::KbSpace)
+          @playing = true
+          @visible = -10
+          @start_time = Gosu.milliseconds
+          @score = 0
+        end
     end
+    #EXIT
+    if id == Gosu::KB_ESCAPE
+      close
+    else
+      super
+    end
+
   end
 end
 
