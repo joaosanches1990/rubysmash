@@ -20,7 +20,6 @@ class Game < Gosu::Window
     @start_time = 0
     @gameover = Gosu::Song.new('media/gameover.mp3')
     @soundtrack = Gosu::Song.new('media/crazyfrog.wav')
-    @soundtrack.play(true)
   end
 
 
@@ -72,7 +71,7 @@ class Game < Gosu::Window
           @score += 10
         else
           @hit = - 1
-          @score -= 5
+          @score -= 3
         end
       end
     else #RESTART
