@@ -43,7 +43,7 @@ class Game < Gosu::Window
     unless @playing
       @font.draw_text("Game Over !!!", 300, 300, 3)
       @visible = 20
-      @font.draw_text("Press Space Bar to Play", 200, 150, 3)
+      @font.draw_text("Press Space Bar to Play", 250, 150, 3)
     end
 
   end
